@@ -67,10 +67,10 @@ class CommandAnalysis {
   CommandAnalysis(const MemorySpecification& memSpec);
 
   // Number of activate commands per bank
-        std::vector<int64_t> numberofactbsBanks;
+  std::vector<int64_t> numberofactbsBanks;
   std::vector<int64_t> numberofactsBanks;
   // Number of precharge commands per bank
-        std::vector<int64_t> numberofprebsBanks;
+  std::vector<int64_t> numberofprebsBanks;
   std::vector<int64_t> numberofpresBanks;
   // Number of reads commands per bank
   std::vector<int64_t> numberofreadsBanks;
@@ -81,12 +81,6 @@ class CommandAnalysis {
   // Number of bankwise refresh commands
   std::vector<int64_t> numberofrefbBanks;
   // Number of precharge cycles
-
-
-
-
-
-
   int64_t prebcycles;
   int64_t precycles;
   // Number of active cycles
@@ -94,22 +88,12 @@ class CommandAnalysis {
   std::vector<int64_t> actbcyclesBanks;
   int64_t actcycles;
   std::vector<int64_t> actcyclesBanks;
-
-
-
-
   // Number of Idle cycles in the active state
   int64_t idlecycles_actb;
   int64_t idlecycles_act;
   // Number of Idle cycles in the precharge state
   int64_t idlecycles_preb;
   int64_t idlecycles_pre;
-
-
-
-
-
-
   // Number of fast-exit activate power-downs
   int64_t f_act_pdns;
   // Number of slow-exit activate power-downs
@@ -175,19 +159,15 @@ class CommandAnalysis {
   int64_t  zero;
   // Cached last read command from the file
   std::vector<MemCommand> cached_cmd;
-
   // Stores the memory commands for analysis
   std::vector<MemCommand> cmd_list;
-
   //Stores the memory commands for the next window
   std::vector<MemCommand> next_window_cmd_list;
-
   // To save states of the different banks, before entering active
   // power-down mode (slow/fast-exit).
   std::vector<BankState> last_bank_state;
   // Bank state vector
   std::vector<BankState> bank_state;
-
   std::vector<int64_t> activation_cycle;
   // To keep track of the last ACT cycle
   int64_t latest_act_cycle;
@@ -197,14 +177,12 @@ class CommandAnalysis {
   int64_t latest_read_cycle;
   // To keep track of the last WRITE cycle
   int64_t latest_write_cycle;
-
   // To calculate end of READ operation
   int64_t end_read_op;
   // To calculate end of WRITE operation
   int64_t end_write_op;
   // To calculate end of ACT operation
   int64_t end_act_op;
-
   // Clock cycle when self-refresh was issued
   int64_t sref_cycle;
 

@@ -64,12 +64,10 @@ int64_t CommandAnalysis::timeToCompletion(MemCommand::cmds type)
                               (memArchSpec.burstLength / memArchSpec.dataRate) +
                               memTimingSpec.WR;
   } else if (type == MemCommand::ACTB) {
-    //XXX: HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     offset = memTimingSpec.RCD;
   } else if (type == MemCommand::ACT) {
     offset = memTimingSpec.RCD;
   } else if (type == MemCommand::PREB) {
-    //XXX: HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     offset = memTimingSpec.RPB;
   } else if ((type == MemCommand::PRE) || (type == MemCommand::PREA)) {
     offset = memTimingSpec.RP;

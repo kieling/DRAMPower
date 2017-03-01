@@ -92,25 +92,14 @@ class MemoryPowerModel {
   int64_t window_cycles;
 
   struct Energy {
-
-
-
-
-
     double actb_energy;
     std::vector<double> actb_energy_banks;
     double act_energy;
     std::vector<double> act_energy_banks;
-
     double preb_energy;
     std::vector<double> preb_energy_banks;
     double pre_energy;
     std::vector<double> pre_energy_banks;
-
-
-
-
-
 
     // Total energy of all reads
     double read_energy;
@@ -127,33 +116,17 @@ class MemoryPowerModel {
     // Bankwise refresh energy
     std::vector<double> refb_energy_banks;
 
-
-
-
-
-
-
-
-
     double actb_stdby_energy;
     std::vector<double> actb_stdby_energy_banks;
     double act_stdby_energy;
     std::vector<double> act_stdby_energy_banks;
-
     double preb_stdby_energy;
     std::vector<double> preb_stdby_energy_banks;
     double pre_stdby_energy;
     std::vector<double> pre_stdby_energy_banks;
 
-
-
-    // XXX: ??????????????????????????????????????
     double idle_energy_actb;
     std::vector<double> idle_energy_actb_banks;
-
-
-
-
     double idle_energy_act;
     std::vector<double> idle_energy_act_banks;
 

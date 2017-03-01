@@ -48,11 +48,11 @@ namespace Data {
 class MemCommand {
  public:
   /*
-   * ACTB - Activate NEW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! RGR
+   * ACTB - Activate (RGR)
    * ACT - Activate
    * RD - Read
    * WR - Write
-   * PREB - Explicit NEW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! RGR Precharge per bank
+   * PREB - Explicit (RGR Precharge per bank)
    * PRE - Explicit Precharge per bank
    * REF - Refresh all banks
    * REFB- Refresh a particular bank
