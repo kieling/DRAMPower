@@ -202,15 +202,19 @@ void MemoryPowerModel::power_calc(const MemorySpecification& memSpec,
 
   EnergyDomain vdd0Domain(mps.vdd, t.clkPeriod);
 
-  energy.actb_energy      = vdd0Domain.calcTivEnergy(sum(c.numberofactbsBanks) * t.RASB, mps.idd0 - mps.idd3n);
+  energy.actb_energy      = vdd0Domain.calcTivEnergy(sum(c.numberofactbsBanks) * t.RAS, mps.idd0 - mps.idd3n);
   energy.act_energy       = vdd0Domain.calcTivEnergy(sum(c.numberofactsBanks) * t.RAS          , mps.idd0 - mps.idd3n);
-  energy.preb_energy      = vdd0Domain.calcTivEnergy(sum(c.numberofprebsBanks) * (t.RCB - t.RASB) , mps.idd0 - mps.idd2n);
+
+  energy.preb_energy      = vdd0Domain.calcTivEnergy(sum(c.numberofprebsBanks) * (t.RC - t.RAS) , mps.idd0 - mps.idd2n);
   energy.pre_energy       = vdd0Domain.calcTivEnergy(sum(c.numberofpresBanks) * (t.RC - t.RAS) , mps.idd0 - mps.idd2n);
+
   energy.read_energy      = vdd0Domain.calcTivEnergy(sum(c.numberofreadsBanks) * burstCc        , mps.idd4r - mps.idd3n);
   energy.write_energy     = vdd0Domain.calcTivEnergy(sum(c.numberofwritesBanks) * burstCc        , mps.idd4w - mps.idd3n);
   energy.ref_energy       = vdd0Domain.calcTivEnergy(c.numberofrefs   * t.RFC          , mps.idd5 - mps.idd3n);
+
   energy.preb_stdby_energy = vdd0Domain.calcTivEnergy(c.prebcycles, mps.idd2n);
   energy.actb_stdby_energy = vdd0Domain.calcTivEnergy(c.actbcycles, mps.idd3n);
+
   energy.pre_stdby_energy = vdd0Domain.calcTivEnergy(c.precycles, mps.idd2n);
   energy.act_stdby_energy = vdd0Domain.calcTivEnergy(c.actcycles, mps.idd3n);
 
@@ -236,10 +240,12 @@ void MemoryPowerModel::power_calc(const MemorySpecification& memSpec,
   //Distribution of energy componets to each banks
   for (unsigned i = 0; i < nbrofBanks; i++) {
 
-    energy.actb_energy_banks[i] = vdd0Domain.calcTivEnergy(c.numberofactbsBanks[i] * t.RASB, mps.idd0 - ione);
+    energy.actb_energy_banks[i] = vdd0Domain.calcTivEnergy(c.numberofactbsBanks[i] * t.RAS, mps.idd0 - ione);
     energy.act_energy_banks[i]  = vdd0Domain.calcTivEnergy(c.numberofactsBanks[i] * t.RAS, mps.idd0 - ione);
-    energy.preb_energy_banks[i] = vdd0Domain.calcTivEnergy(c.numberofprebsBanks[i] * (t.RPB), mps.idd0 - ione);
+
+    energy.preb_energy_banks[i] = vdd0Domain.calcTivEnergy(c.numberofprebsBanks[i] * (t.RP), mps.idd0 - ione);
     energy.pre_energy_banks[i]  = vdd0Domain.calcTivEnergy(c.numberofpresBanks[i] * (t.RP), mps.idd0 - ione);
+
     energy.read_energy_banks[i] = vdd0Domain.calcTivEnergy(c.numberofreadsBanks[i] * burstCc, mps.idd4r - mps.idd3n);
     energy.write_energy_banks[i] = vdd0Domain.calcTivEnergy(c.numberofwritesBanks[i] * burstCc, mps.idd4w - mps.idd3n);
     energy.ref_energy_banks[i] = vdd0Domain.calcTivEnergy(c.numberofrefs * t.RFC, mps.idd5 - mps.idd3n) / static_cast<double>(nbrofBanks);
@@ -313,9 +319,9 @@ void MemoryPowerModel::power_calc(const MemorySpecification& memSpec,
   if (memArchSpec.twoVoltageDomains) {
     EnergyDomain vdd2Domain(mps.vdd2, t.clkPeriod);
 
-    energy.actb_energy += vdd2Domain.calcTivEnergy(sum(c.numberofactbsBanks) * t.RASB          , mps.idd02 - mps.idd3n2);
+    energy.actb_energy += vdd2Domain.calcTivEnergy(sum(c.numberofactbsBanks) * t.RAS          , mps.idd02 - mps.idd3n2);
     energy.act_energy       += vdd2Domain.calcTivEnergy(sum(c.numberofactsBanks) * t.RAS          , mps.idd02 - mps.idd3n2);
-    energy.preb_energy += vdd2Domain.calcTivEnergy(sum(c.numberofprebsBanks) * (t.RCB - t.RASB) , mps.idd02 - mps.idd2n2);
+    energy.preb_energy += vdd2Domain.calcTivEnergy(sum(c.numberofprebsBanks) * (t.RC - t.RAS) , mps.idd02 - mps.idd2n2);
     energy.pre_energy       += vdd2Domain.calcTivEnergy(sum(c.numberofpresBanks) * (t.RC - t.RAS) , mps.idd02 - mps.idd2n2);
     energy.read_energy      += vdd2Domain.calcTivEnergy(sum(c.numberofreadsBanks) * burstCc        , mps.idd4r2 - mps.idd3n2);
     energy.write_energy     += vdd2Domain.calcTivEnergy(sum(c.numberofwritesBanks) * burstCc        , mps.idd4w2 - mps.idd3n2);
